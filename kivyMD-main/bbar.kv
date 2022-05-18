@@ -1,0 +1,89 @@
+BoxLayout:
+    orientation: 'vertical'
+
+    MDToolbar:
+        title: ""
+        md_bg_color: app.theme_cls.primary_light
+        opposite_colors: True
+        specific_text_color: 1,1,1,1
+
+    MDBottomNavigation:
+        #color stuff
+        #panel_color: 0,0,1,1
+        elected_color_background: 0, 0, 1, .4
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: "Favoritos"
+            icon: 'star'
+          
+            ScrollView:
+                MDList:
+                    #OneLineListItem:
+                    #TwoLineListItem:
+                    ThreeLineListItem:
+                        id: item1
+                        text: "Japa Maneiro"
+                        secondary_text: "Second Line"
+                        tertiary_text: "Third Line"
+                        fourth_text: "quarta linha"
+                        on_release: app.presser(self, "item1")
+
+                    ThreeLineListItem:
+                        id: item2
+                        text: "Rei do Sushi"
+                        secondary_text: "Second Line"
+                        tertiary_text: "Third Line"
+                        fourth_text: "quarta linha"
+                        on_release: app.presser(self, "item2")
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: "Home"
+            icon: 'home'
+
+            
+            MDLabel:
+                text: "Seja bem-vindo ao FoodFinder!"
+                halign: "center"
+                pos_hint:{"center_y":0.9}
+                
+            MDTextField:
+                id: mealType
+                pos_hint:{"center_x": 0.5, "center_y":0.8}
+                size_hint_x: 0.4
+                mode: "rectangle"
+                hint_text: "Insira o tipo de comida"
+
+            MDTextField:
+                id: location
+                pos_hint:{"center_x": 0.5, "center_y":0.7}
+                size_hint_x: 0.4
+                mode: "rectangle"
+                hint_text: "Insira o local"
+            
+            MDFillRoundFlatButton:
+                text: "Clique para Buscar"
+                size_hint_x: 0.4
+                size_hint_y: 0.1
+                pos_hint:{"center_x": 0.5, "center_y":0.55}
+                color: "Blue"
+                line_color: 0,0,1,1
+                on_release:
+                    screen_manager.current = "resultados"
+                on_press:
+                    root.busca()
+
+
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: "Conta"
+            icon: 'account'
+
+            MDLabel:
+                text: "My Instagram:\nrealjohnelder"
+                halign: 'center'
+
+        
+
