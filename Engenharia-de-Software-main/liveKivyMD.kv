@@ -65,7 +65,7 @@ Screen:
         md_bg_color: app.theme_cls.primary_color
         
         MDLabel:
-            text: 'Alterar Senha'
+            text: 'Excluir Conta'
             #pos_hint:{'center_y': .5}
             theme_text_color: 'Custom'
             text_color: 1, 1, 1, 1
@@ -78,25 +78,20 @@ Screen:
             on_release: root.fechar()
             
     MDFloatLayout:
-        MDTextField:
+        MDText:
             pos_hint: {'center_x': .5, 'center_y': .85} 
             size_hint_x: .8
-            hint_text: 'Senha antiga'
-
-        MDTextField: 
-            pos_hint: {'center_x': .5, 'center_y': .65} 
-            size_hint_x: .8
-            hint_text: 'Nova senha'
-
-        MDTextField: 
-            pos_hint: {'center_x': .5, 'center_y': .45} 
-            size_hint_x: .8
-            hint_text: 'Confirmar senha'
+            hint_text: 'Deseja excluir sua conta?'
         
         MDRaisedButton:
-            pos_hint: {'center_x': .5, 'center_y': .2} 
-            size_hint_x: .5
-            text: 'Confirmar'
+            pos_hint: {'center_x': .4, 'center_y': .2} 
+            size_hint_x: .2
+            text: 'Sim'
+
+        MDRaisedButton:
+            pos_hint: {'center_x': .6, 'center_y': .2} 
+            size_hint_x: .2
+            text: 'Não'
 
 
 <TelaConta>: #da pra definir a posição exata dos widgets
@@ -157,3 +152,5 @@ Screen:
         text: "Excluir Conta"
         pos_hint: {'center_x': .5, 'center_y': .27} #define a posição
         on_release: root.excluirconta()
+    
+    

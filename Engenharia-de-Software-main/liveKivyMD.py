@@ -5,6 +5,8 @@ from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.card import MDCard
+from kivymd.uix.bottomnavigation import MDBottomNavigation
+from kivymd.uix.bottomnavigation import MDBottomNavigationItem
 
 from kivy.core.window import Window
 Window.size = (375,625)
@@ -31,6 +33,11 @@ class TelaConta(FloatLayout): #classe herda floatlayout
         self.add_widget(SenhaCard())
     def excluirconta(self):
         self.add_widget(ExContaCard())
+
+'''class AbrirTela(MDBottomNavigation):
+    def abrirconta(self):
+        self.add_widget(TelaConta())
+'''
 
 class MyApp(MDApp):
     def build(self):
