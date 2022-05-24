@@ -1,0 +1,198 @@
+Screen:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: "FoodFinder"
+            left_action_items: [['chevron-left', lambda x: app.callback(x)]]
+            right_action_items: [["account-arrow-left", lambda x: app.callback(x)]]
+
+
+        MDBottomNavigation:
+            #color stuff
+            #panel_color: 0,0,1,1
+            elected_color_background: 0, 0, 1, .4
+            
+            MDBottomNavigationItem:
+                id: 'BHome'
+                name: 'screen 2'
+                text: "Home"
+                icon: 'home'
+                TelaHome:
+
+            MDBottomNavigationItem:
+                name: 'screen 3'
+                text: "Conta"
+                icon: 'account'
+                TelaConta:
+            
+            MDBottomNavigationItem:
+                name: 'screen 1'
+                text: "Favoritos"
+                icon: 'star'
+                TelaFav:
+                
+
+        
+
+            
+            
+
+
+        
+
+<TelaFav>:
+    ScrollView:
+        MDList:
+        #OneLineListItem:
+        #TwoLineListItem:
+            ThreeLineListItem:
+                id: item1
+                text: "Japa Maneiro"
+                secondary_text: "Second Line"
+                tertiary_text: "Third Line"
+                fourth_text: "quarta linha"
+                on_release: app.presser(self, "item1")
+
+            ThreeLineListItem:
+                id: item2
+                text: "Rei do Sushi"
+                secondary_text: "Second Line"
+                tertiary_text: "Third Line"
+                fourth_text: "quarta linha"
+                on_release: app.presser(self, "item2")       
+
+<TelaHome>:
+    MDLabel:
+        text: "Seja bem-vindo ao FoodFinder!"
+        halign: "center"
+        pos_hint:{"center_y":0.9}
+                
+    MDTextField:
+        pos_hint:{"center_x": 0.5, "center_y":0.8}
+        size_hint_x: 0.4
+        mode: "rectangle"
+        hint_text: "Insira o tipo de comida"
+
+    MDTextField:
+        id: location
+        pos_hint:{"center_x": 0.5, "center_y":0.7}
+        size_hint_x: 0.4
+        mode: "rectangle"
+        hint_text: "Insira o local"
+            
+    MDFillRoundFlatButton:
+        text: "Buscar"
+        size_hint_x: 0.4
+        size_hint_y: 0.1
+        pos_hint:{"center_x": 0.5, "center_y":0.55}
+        on_release:
+            screen_manager.current = "resultados"
+        on_press:
+            root.busca()
+            
+<TelaConta>: #da pra definir a posição exata dos widgets
+    MDIconButton:
+        pos_hint: {'center_x': .5, 'center_y': .8}
+        icon: 'camera-account'
+        user_font_size: '75sp' #define o tamanho do icon
+    MDLabel:
+        text: 'José Marques' #recebe o nome do usuário do banco
+        halign: "center"
+        pos_hint: {'center_x': .5, 'center_y': .7}
+    
+    # Email
+    MDLabel:
+        text: 'Email:' 
+        halign: "center"
+        pos_hint: {'center_x': .1, 'center_y': .6}
+    MDTextField:
+        size_hint_x: .7
+        hint_text: 'Zezinhodoidao@gmail.com'
+        disabled:True
+        pos_hint: {'center_x': .52, 'center_y': .6}
+    MDIconButton:
+        pos_hint: {'center_x': .9, 'center_y': .6}
+        icon: 'pencil'
+    
+    #CPF
+    MDLabel:
+        text: 'CPF:' 
+        halign: "center"
+        pos_hint: {'center_x': .1, 'center_y': .53}
+    MDTextField:
+        size_hint_x: .7
+        hint_text: '12345678911'
+        disabled:True
+        pos_hint: {'center_x': .52, 'center_y': .53}
+    
+
+    #Data Nascimento
+    MDLabel:
+        text: 'Data de Nascimento:' 
+        halign: "center"
+        pos_hint: {'center_x': .235, 'center_y': .46}
+    MDTextField:
+        size_hint_x: .43
+        hint_text: '19/05/2022'
+        disabled:True
+        pos_hint: {'center_x': .651, 'center_y': .46}
+
+    MDRaisedButton:
+        size_hint_x: .4
+        text: "Alterar Senha"
+        pos_hint: {'center_x': .5, 'center_y': .35} #define a posição
+        on_release: root.abrir_card()
+    
+    MDRectangleFlatButton:
+        size_hint_x: .4
+        text: "Excluir Conta"
+        pos_hint: {'center_x': .5, 'center_y': .27}
+        on_release: app.show_alert_dialog()
+        
+<SenhaCard>:
+    orientation: 'vertical'
+    id: card
+    size_hint: .7, .55
+    pos_hint: {'center_x': .5, 'center_y': .5}
+
+    MDBoxLayout:
+        size_hint_y: .2
+        padding: [40, 10, 10, 10]
+        md_bg_color: app.theme_cls.primary_color
+        
+        MDLabel:
+            text: 'Alterar Senha'
+            #pos_hint:{'center_y': .5}
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+        
+        MDIconButton:
+            icon: 'close'
+            #pos_hint:{'center_y': .5}
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            on_release: root.fechar()
+    
+    MDFloatLayout:
+        MDTextField:
+            pos_hint: {'center_x': .5, 'center_y': .85} 
+            size_hint_x: .8
+            hint_text: 'Senha antiga'
+
+        MDTextField: 
+            pos_hint: {'center_x': .5, 'center_y': .65} 
+            size_hint_x: .8
+            hint_text: 'Nova senha'
+
+        MDTextField: 
+            pos_hint: {'center_x': .5, 'center_y': .45} 
+            size_hint_x: .8
+            hint_text: 'Confirmar senha'
+        
+        MDRaisedButton:
+            pos_hint: {'center_x': .5, 'center_y': .2} 
+            size_hint_x: .5
+            text: 'Confirmar'
+ 
+
