@@ -1,0 +1,128 @@
+ScreenManager:
+    TelaLogin:
+    Inicial:
+    Resultados:
+    
+<TelaLogin>
+    name: "tela_login"
+    MDLabel:
+        text: "Tela de Login"
+        halign: "center"
+        pos_hint:{"center_x": 0.5, "center_y":0.9}
+
+    MDTextField:
+        id: cpf
+        pos_hint:{"center_x": 0.5, "center_y":0.8}
+        size_hint_x: 0.4
+        mode: "rectangle"
+        hint_text: "CPF"
+
+    MDTextField:
+        id: senha
+        pos_hint:{"center_x": 0.5, "center_y":0.7}
+        size_hint_x: 0.4
+        mode: "rectangle"
+        hint_text: "Senha"
+        password: True
+
+    MDFillRoundFlatButton:
+        text: "Entrar"
+        halign: "center"
+        pos_hint:{"center_x": 0.5, "center_y":0.6}
+        on_press:
+            root.manager.current = "inicial"
+        size_hint_x: 0.4
+
+    MDFillRoundFlatButton:
+        text: "Cadastro"
+        halign: "center"
+        pos_hint:{"center_x": 0.5, "center_y":0.5}
+        size_hint_x: 0.4
+
+<Inicial>
+    name: "inicial"
+    MDLabel:
+        text: "Seja bem-vindo ao FoodFinder!"
+        halign: "center"
+        pos_hint:{"center_y":0.9}
+                
+    MDTextField:
+        id: mealType
+        pos_hint:{"center_x": 0.5, "center_y":0.8}
+        size_hint_x: 0.4
+        mode: "rectangle"
+        hint_text: "Insira o tipo de comida"
+
+    MDTextField:
+        id: location
+        pos_hint:{"center_x": 0.5, "center_y":0.7}
+        size_hint_x: 0.4
+        mode: "rectangle"
+        hint_text: "Insira o local"      
+    MDFillRoundFlatButton:
+        text: "Clique para Buscar"
+        size_hint_x: 0.4
+        size_hint_y: 0.1
+        pos_hint:{"center_x": 0.5, "center_y":0.55}
+        color: "Blue"
+        line_color: 0,0,1,1
+        on_press:
+            var=root.busca()
+            for v in var: \
+            root.abrir_card(v['name'],v['address'], v['photo'])
+
+<Resultados>
+    name: "resultados"
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint:{"left_x": 0.5, "center_y":0.9}
+        on_press:
+            root.manager.current = "inicial"
+    MDLabel:
+        id: resultados
+        text: "resultados"
+        pos_hint:{"center_y":0.8}
+        halign: "center"
+    MDFillRoundFlatButton:
+        text: "Cadastro"
+        pos_hint:{"left_x": 0.5, "center_y":0.4}
+        halign: "center"
+
+<ResultadosCard>
+    name: 'resultados_card'
+    orientation: 'vertical'
+    pos_hint: {'center_x': .5, 'center_y': .2}
+    size_hint: .5, .3
+
+    MDBoxLayout:
+        id: box_top
+        spacing: "20dp"
+        adaptive_height: True
+
+        FitImage:
+            id: photo
+            source: "https://img.itdg.com.br/tdg/images/blog/uploads/2017/07/shutterstock_413580649.jpg?w=1200"
+            size_hint: .3, None
+            height: text_box.height
+
+        MDBoxLayout:
+            id: text_box
+            orientation: "vertical"
+            adaptive_height: True
+            spacing: "10dp"
+            padding: 0, "10dp", "10dp", "10dp"
+
+            MDLabel:
+                id: name
+                text: ''
+                theme_text_color: "Primary"
+                font_style: "H5"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                id: address
+                text: ""
+                adaptive_height: True
+                theme_text_color: "Primary"
+
