@@ -11,15 +11,8 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.screenmanager import ScreenManager, Screen
 import finder 
 
-Window.size = (400,750)
+Window.size = (350,650)
 
-
-class ResultadosCard(MDCard):
-    def __init__(self,name='',address='',photo='',**kwargs):
-       super().__init__(**kwargs)
-       self.ids.name.text = name
-       self.ids.address.text = address
-       self.ids.photo.source = photo
 
 class TelaLogin(Screen):
     def logado(self):
@@ -44,15 +37,6 @@ class TelaHome(Screen):
         self.add_widget(Resultado())
     def ir_resultado(self):
         MDApp.get_running_app().root.current = "resultado"
-
-    def busca(self):
-        comida = self.ids.mealType.text
-        local = self.ids.location.text
-
-        resposta = []
-        resposta.append(finder.findARestaurant(comida, local))
-        resposta.append(finder.findARestaurant(comida, local))
-        return resposta
     
 
 class Resultado(Screen):

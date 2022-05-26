@@ -199,9 +199,7 @@ ScreenManager:
             pos_hint:{"center_x": 0.5, "center_y":0.55}
             on_release: 
                 root.ir_resultado()
-                var=root.busca()
-                for v in var: \
-                root.abrir_card(v['name'],v['address'], v['photo'])
+                
 
             
 <TelaConta>: #da pra definir a posição exata dos widgets
@@ -315,7 +313,27 @@ ScreenManager:
             title: "Resultados"
             left_action_items: [['chevron-left', lambda x: root.voltar_logado()]]
 
-        ResultadosCard:
+        ScrollView:
+            MDList:
+            #OneLineListItem:
+            #TwoLineListItem:
+                ThreeLineListItem:
+                    id: item1
+                    text: "Japa Maneiro"
+                    secondary_text: "Second Line"
+                    tertiary_text: "Third Line"
+                    fourth_text: "quarta linha"
+                    on_release: app.presser(self, "item1")
+
+                ThreeLineListItem:
+                    id: item2
+                    text: "Rei do Sushi"
+                    secondary_text: "Second Line"
+                    tertiary_text: "Third Line"
+                    fourth_text: "quarta linha"
+                    on_release: app.presser(self, "item2")   
+
+        
 
 <ResultadoDes>:
     BoxLayout:
@@ -344,42 +362,5 @@ ScreenManager:
                     fourth_text: "quarta linha"
                     on_release: app.presser(self, "item2")   
         
-    
-<ResultadosCard>
-    name: 'resultados_card'
-    orientation: 'vertical'
-    pos_hint: {'center_x': .5, 'center_y': .2}
-    size_hint: .5, .3
 
-    MDBoxLayout:
-        id: box_top
-        spacing: "20dp"
-        adaptive_height: True
-
-        FitImage:
-            id: photo
-            source: "https://img.itdg.com.br/tdg/images/blog/uploads/2017/07/shutterstock_413580649.jpg?w=1200"
-            size_hint: .3, None
-            height: text_box.height
-
-        MDBoxLayout:
-            id: text_box
-            orientation: "vertical"
-            adaptive_height: True
-            spacing: "10dp"
-            padding: 0, "10dp", "10dp", "10dp"
-
-            MDLabel:
-                id: name
-                text: ''
-                theme_text_color: "Primary"
-                font_style: "H5"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                id: address
-                text: ""
-                adaptive_height: True
-                theme_text_color: "Primary"
 
