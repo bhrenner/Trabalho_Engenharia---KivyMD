@@ -9,10 +9,10 @@ from kivymd.uix.dialog import MDDialog
 from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.clock import Clock
 import finder 
 
-Window.size = (350,650)
-
+Window.size = (400,750)
 
 class TelaLogin(Screen):
     def logado(self):
@@ -37,6 +37,15 @@ class TelaHome(Screen):
         self.add_widget(Resultado())
     def ir_resultado(self):
         MDApp.get_running_app().root.current = "resultado"
+
+    def busca(self):
+        comida = self.ids.mealType.text
+        local = self.ids.location.text
+
+        resposta = []
+        resposta.append(finder.findARestaurant(comida, local))
+        resposta.append(finder.findARestaurant(comida, local))
+        return resposta
     
 
 class Resultado(Screen):
@@ -69,10 +78,18 @@ sm.add_widget(TelaHome(name='home'))
 class MyApp(MDApp):
     dialog = None
     def build(self):
+        global sm
+        sm = ScreenManager()
         self.theme_cls.primary_palette = 'DeepOrange'
         self.theme_cls.accent_palette = 'Red'
         return Builder.load_file('FoodFinder.kv')
 
+    '''
+    def on_start(self):
+        Clock.schedule_once(self.login, 5)
+
+    def login(*args):
+        sm.current = "login"'''
     def presser(self, pressed, list_id):
         pressed.tertiary_text = f"You Pressed {list_id}"
 

@@ -312,7 +312,6 @@ ScreenManager:
         MDToolbar:
             title: "Resultados"
             left_action_items: [['chevron-left', lambda x: root.voltar_logado()]]
-
         ScrollView:
             MDList:
             #OneLineListItem:
@@ -331,10 +330,9 @@ ScreenManager:
                     secondary_text: "Second Line"
                     tertiary_text: "Third Line"
                     fourth_text: "quarta linha"
-                    on_release: app.presser(self, "item2")   
+                    on_release: app.presser(self, "item2")       
 
         
-
 <ResultadoDes>:
     BoxLayout:
         orientation: 'vertical'
@@ -362,5 +360,42 @@ ScreenManager:
                     fourth_text: "quarta linha"
                     on_release: app.presser(self, "item2")   
         
+    
+<ResultadosCard>
+    name: 'resultados_card'
+    orientation: 'vertical'
+    pos_hint: {'center_x': .5, 'center_y': .2}
+    size_hint: .5, .3
 
+    MDBoxLayout:
+        id: box_top
+        spacing: "20dp"
+        adaptive_height: True
+
+        FitImage:
+            id: photo
+            source: "https://img.itdg.com.br/tdg/images/blog/uploads/2017/07/shutterstock_413580649.jpg?w=1200"
+            size_hint: .3, None
+            height: text_box.height
+
+        MDBoxLayout:
+            id: text_box
+            orientation: "vertical"
+            adaptive_height: True
+            spacing: "10dp"
+            padding: 0, "10dp", "10dp", "10dp"
+
+            MDLabel:
+                id: name
+                text: ''
+                theme_text_color: "Primary"
+                font_style: "H5"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                id: address
+                text: ""
+                adaptive_height: True
+                theme_text_color: "Primary"
 
